@@ -1,14 +1,14 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: WordPress Plugin Boilerplate\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-10 13:25+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: 2022-05-10 13:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: Latvian\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=n % 10 == 1 && n % 100 != 11 ? 0 : n != 0 ? "
+"1 : 2;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +24,7 @@ msgstr ""
 #, php-format
 msgid "Great! It works. Now try customizing your own widget in <code>%s</code>"
 msgstr ""
+"Lieliski! Spraudnis strādā. Tagad pamēģini to pielāgot iekš <code>%s></code>"
 
 #. URI of the plugin
 msgid "https://wordpress.org/plugins/wp-plugin-boilerplate"
@@ -35,16 +36,17 @@ msgstr ""
 
 #: admin/class-wppb-admin.php:38
 msgid "Settings"
-msgstr ""
+msgstr "Uzstādījumi"
 
 #. Description of the plugin
 #: admin/templates/wppb-admin-display.php:3
 msgid "This plugin boilerplate is meant for you to develop your own plugin on."
 msgstr ""
+"Šī spraudņa sagatave ir paredzēta, lai tu uz tās izstrādātu savu spraudni."
 
 #: admin/templates/widgets/wppb-widget.php:2
 msgid "Title:"
-msgstr ""
+msgstr "Virsraksts:"
 
 #: admin/templates/wppb-admin-display.php:5
 #, php-format
@@ -54,11 +56,11 @@ msgstr ""
 #. Name of the plugin
 #: admin/templates/wppb-admin-display.php:2
 msgid "WordPress Plugin Boilerplate"
-msgstr ""
+msgstr "WordPress Spraudņa Sagatave"
 
 #: admin/widgets/class-wppb-widget.php:19
 msgid "WordPress Plugin Boilerplate Widget"
-msgstr ""
+msgstr "WordPress Spraudņa Sagataves logrīks"
 
 #: admin/class-wppb-admin.php:49 admin/class-wppb-admin.php:50
 msgid "WPPB"
@@ -66,8 +68,8 @@ msgstr ""
 
 #: admin/class-wppb-dashboard.php:40 admin/widgets/class-wppb-widget.php:18
 msgid "WPPB Widget"
-msgstr ""
+msgstr "WPPB Logrīks"
 
 #: admin/widgets/class-wppb-widget.php:49
 msgid "WPPB Widget Title"
-msgstr ""
+msgstr "WPPB Logrīka virsraksts"

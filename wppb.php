@@ -12,14 +12,14 @@ namespace richardevcom\wppb;
  * necessary dependencies and set them up for you.
  *
  * @link              richardev.com
- * @since             1.0.0
+ * @since             1.0.1
  * @package           WPPB
  *
  * @wordpress-plugin
  * Plugin Name:       WordPress Plugin Boilerplate
  * Plugin URI:        https://wordpress.org/plugins/wp-plugin-boilerplate
  * Description:       This plugin boilerplate is meant for you to develop your own plugin on.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            @richardevcom
  * Author URI:        https://www.richardev.com
  * License:           GPL-2.0+

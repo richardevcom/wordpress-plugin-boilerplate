@@ -6,7 +6,7 @@ namespace richardevcom\wppb\config;
  * Current plugin version.
  * Update this with your latest release.
  */
-define('WPPB_VERSION', '1.0.0');
+define('WPPB_VERSION', '1.0.1');
 define('WPPB_PREFIX', 'wppb');
 define('WPPB_PATH', plugin_dir_path(dirname(__FILE__)));
 define('WPPB_URL', plugin_dir_url(dirname(__FILE__)));

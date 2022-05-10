@@ -6,7 +6,7 @@ namespace richardevcom\wppb\admin;
  * Widgets functionality of the plugin.
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/admin/Widgets
@@ -24,7 +24,7 @@ class WPPB_Widgets extends \WP_Widget {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		//

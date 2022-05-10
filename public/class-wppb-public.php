@@ -6,7 +6,7 @@ namespace richardevcom\wppb;
  * The public-facing functionality of the plugin.
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/public
@@ -27,7 +27,7 @@ class WPPB_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		//
@@ -36,7 +36,7 @@ class WPPB_Public {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
 
@@ -58,7 +58,7 @@ class WPPB_Public {
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
 

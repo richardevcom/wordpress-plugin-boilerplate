@@ -6,7 +6,7 @@ namespace richardevcom\wppb;
  * Main plugin class flie
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/includes
@@ -18,7 +18,7 @@ namespace richardevcom\wppb;
  * Used to setup dependencies, admin and public side
  * of the plugin.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    wppb
  * @subpackage wppb/includes
  * @author     richardev <richardev@localhost>
@@ -28,7 +28,7 @@ class WPPB {
 	/**
 	 * Variable that manages all the plugin hooks.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   protected
 	 * @var      WPPB_Hooks    $hooks    Manages all hooks for the plugin.
 	 */
@@ -38,7 +38,7 @@ class WPPB {
 	 * Set up main plugin functionality 
 	 * 
 	 * @param    string               $file             Plugin index filename.
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		$this->register_setup_hooks(WPPB_PATH . 'wppb.php');
@@ -51,7 +51,7 @@ class WPPB {
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -97,7 +97,7 @@ class WPPB {
 	/**
 	 * Setup plugin domain/locale
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 */
 	private function set_locale() {
@@ -111,7 +111,7 @@ class WPPB {
 	/**
 	 * Register admin hooks
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
@@ -144,7 +144,7 @@ class WPPB {
 	/**
 	 * Register public hooks
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -158,7 +158,7 @@ class WPPB {
 	/**
 	 * Run plugin dependencies, hooks, etc. here
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function run() {
 		$this->hooks->run();
@@ -168,7 +168,7 @@ class WPPB {
 	 * Register activation, deactivation and uninstallation hooks
 	 * 
 	 * @param    string               $index             Plugin index filename.
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	private function register_setup_hooks($index) {
 		register_activation_hook($index, array($this, 'activate_wppb'));

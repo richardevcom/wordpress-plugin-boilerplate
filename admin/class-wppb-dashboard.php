@@ -6,7 +6,7 @@ namespace richardevcom\wppb\admin;
  * Dashboard functionality of the plugin.
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/admin/dashboard
@@ -24,7 +24,7 @@ class WPPB_Dashboard {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 	}
@@ -74,7 +74,7 @@ class WPPB_Dashboard {
 	/**
 	 * Register the stylesheets for the dashboard.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style(WPPB_PREFIX . '-dashboard', WPPB_ADMIN_URL . 'assets/css/wppb-dashboard.css', array(), WPPB_VERSION, 'all');
@@ -83,7 +83,7 @@ class WPPB_Dashboard {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script(WPPB_PREFIX . '-dashboard', WPPB_ADMIN_URL . 'assets/js/wppb-dashboard.js', array('jquery'), WPPB_VERSION, false);

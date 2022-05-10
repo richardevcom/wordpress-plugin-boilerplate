@@ -6,7 +6,7 @@ namespace richardevcom\wppb;
  * The admin-specific functionality of the plugin.
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/admin
@@ -27,7 +27,7 @@ class WPPB_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		//
@@ -68,7 +68,7 @@ class WPPB_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
 
@@ -90,7 +90,7 @@ class WPPB_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
 

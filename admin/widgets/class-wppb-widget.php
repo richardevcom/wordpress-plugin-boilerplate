@@ -10,7 +10,7 @@ class WPPB_Widget extends \WP_Widget {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		parent::__construct(
@@ -23,7 +23,7 @@ class WPPB_Widget extends \WP_Widget {
 	/**
 	 * Widget output (public)
 	 * 
-	 * @since	1.0.0
+	 * @since	1.0.1
 	 * @param	array	$args	Array of widget arguments
 	 * @param	array	$instance	Widget instance (previously saved data)
 	 */

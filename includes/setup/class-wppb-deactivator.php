@@ -6,7 +6,7 @@ namespace richardevcom\wppb\setup;
  * Fired during plugin deactivation
  *
  * @link       richardev.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    wppb
  * @subpackage wppb/includes
@@ -17,7 +17,7 @@ namespace richardevcom\wppb\setup;
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    wppb
  * @subpackage wppb/includes
  * @author     richardev <richardev@localhost>
@@ -29,7 +29,7 @@ class WPPB_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public static function deactivate() {
 	}
