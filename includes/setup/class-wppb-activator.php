@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\setup;
+
 /**
  * Fired during plugin activation
  *
@@ -29,6 +31,6 @@ class WPPB_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	static function activate() {
 	}
 }

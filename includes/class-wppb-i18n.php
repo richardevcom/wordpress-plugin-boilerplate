@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb;
+
 /**
  * Define the internationalization functionality
  *
@@ -39,9 +41,5 @@ class WPPB_I18n {
 			false,
 			WPPB_LANGUAGES_PATH
 		);
-
 	}
-
-
-
 }

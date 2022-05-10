@@ -1,5 +1,8 @@
 <?php
 
+namespace richardevcom\wppb;
+
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -19,9 +22,10 @@
  *
  * @package    wppb
  * @subpackage wppb/includes
- * @author     richardev <richardev@localhost>
+ * @author     DevinVinson
+ * @source https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/blob/master/plugin-name/includes/class-plugin-name-loader.php
  */
-class WPPB_Loader {
+class WPPB_Hooks {
 
 	/**
 	 * The array of actions registered with WordPress.
@@ -50,7 +54,6 @@ class WPPB_Loader {
 
 		$this->actions = array();
 		$this->filters = array();
-
 	}
 
 	/**
@@ -63,8 +66,8 @@ class WPPB_Loader {
 	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
 	 */
-	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
+	public function add_action($hook, $component, $callback, $priority = 10, $accepted_args = 1) {
+		$this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
 	}
 
 	/**
@@ -77,8 +80,8 @@ class WPPB_Loader {
 	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
-	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
+	public function add_filter($hook, $component, $callback, $priority = 10, $accepted_args = 1) {
+		$this->filters = $this->add($this->filters, $hook, $component, $callback, $priority, $accepted_args);
 	}
 
 	/**
@@ -95,7 +98,7 @@ class WPPB_Loader {
 	 * @param    int                  $accepted_args    The number of arguments that should be passed to the $callback.
 	 * @return   array                                  The collection of actions and filters registered with WordPress.
 	 */
-	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
+	private function add($hooks, $hook, $component, $callback, $priority, $accepted_args) {
 
 		$hooks[] = array(
 			'hook'          => $hook,
@@ -106,7 +109,6 @@ class WPPB_Loader {
 		);
 
 		return $hooks;
-
 	}
 
 	/**
@@ -116,14 +118,12 @@ class WPPB_Loader {
 	 */
 	public function run() {
 
-		foreach ( $this->filters as $hook ) {
-			add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
+		foreach ($this->filters as $hook) {
+			add_filter($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'], $hook['accepted_args']);
 		}
 
-		foreach ( $this->actions as $hook ) {
-			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
+		foreach ($this->actions as $hook) {
+			add_action($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'], $hook['accepted_args']);
 		}
-
 	}
-
 }

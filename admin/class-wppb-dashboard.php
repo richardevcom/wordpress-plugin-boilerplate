@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\admin;
+
 /**
  * Dashboard functionality of the plugin.
  *
@@ -75,7 +77,7 @@ class WPPB_Dashboard {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style(WPPB_PREFIX . '_DASHBOARD', WPPB_ADMIN_URL . 'css/wppb-dashboard.css', array(), WPPB_VERSION, 'all');
+		wp_enqueue_style(WPPB_PREFIX . '-dashboard', WPPB_ADMIN_URL . 'assets/css/wppb-dashboard.css', array(), WPPB_VERSION, 'all');
 	}
 
 	/**
@@ -84,6 +86,6 @@ class WPPB_Dashboard {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script(WPPB_PREFIX . '_DASHBOARD', WPPB_ADMIN_URL . 'js/wppb-dashboard.js', array('jquery'), WPPB_VERSION, false);
+		wp_enqueue_script(WPPB_PREFIX . '-dashboard', WPPB_ADMIN_URL . 'assets/js/wppb-dashboard.js', array('jquery'), WPPB_VERSION, false);
 	}
 }

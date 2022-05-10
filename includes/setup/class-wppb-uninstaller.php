@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\setup;
+
 /**
  * Fired during plugin uninstallation
  *
@@ -30,7 +32,5 @@ class WPPB_Uninstaller {
 	 * @since    1.0.0
 	 */
 	public static function uninstall() {
-
 	}
-
 }

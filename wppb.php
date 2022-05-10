@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb;
+
 /**
  * WordPress plugin boilerplate file
  *
@@ -37,16 +39,11 @@ if (!defined('WPINC')) {
 require_once plugin_dir_path(__FILE__) . 'includes/wppb-config.php';
 
 /**
- * Load helper functions
+ * Helper functions
  */
 require_once WPPB_INCLUDES_PATH . 'wppb-helpers.php';
 
 /**
- * Main plugin class
- */
-require_once WPPB_INCLUDES_PATH . 'class-wppb.php';
-
-/**
  * Let's run our plugin
  */
-wppb_init();
+\richardevcom\wppb\helpers\wppb_init();

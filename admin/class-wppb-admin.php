@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -33,7 +35,7 @@ class WPPB_Admin {
 
 	public function add_action_links($actions) {
 		$mylinks = array(
-			'<a href="' . admin_url('admin.php?page=wppb') . '">Settings</a>',
+			'<a href="' . admin_url('admin.php?page=wppb') . '">' . __('Settings', 'wppb') . '</a>',
 		);
 		$actions = array_merge($actions, $mylinks);
 		return $actions;
@@ -58,6 +60,11 @@ class WPPB_Admin {
 		require_once WPPB_ADMIN_PATH . 'templates/wppb-admin-display.php';
 	}
 
+	public function pagenow() {
+		global $pagenow;
+		return $pagenow;
+	}
+
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
@@ -69,15 +76,15 @@ class WPPB_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WPPB_Loader as all of the hooks are defined
+		 * defined in WPPB_Hooks as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WPPB_Loader will then create the relationship
+		 * The WPPB_Hooks will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style(WPPB_PREFIX, WPPB_ADMIN_URL . 'css/wppb-admin.css', array(), WPPB_VERSION, 'all');
+		wp_enqueue_style(WPPB_PREFIX, WPPB_ADMIN_URL . 'assets/css/wppb-admin.css', array(), WPPB_VERSION, 'all');
 	}
 
 	/**
@@ -91,14 +98,14 @@ class WPPB_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WPPB_Loader as all of the hooks are defined
+		 * defined in WPPB_Hooks as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WPPB_Loader will then create the relationship
+		 * The WPPB_Hooks will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script(WPPB_PREFIX, WPPB_ADMIN_URL . 'js/wppb-admin.js', array('jquery'), WPPB_VERSION, false);
+		wp_enqueue_script(WPPB_PREFIX, WPPB_ADMIN_URL . 'assets/js/wppb-admin.js', array('jquery'), WPPB_VERSION, false);
 	}
 }

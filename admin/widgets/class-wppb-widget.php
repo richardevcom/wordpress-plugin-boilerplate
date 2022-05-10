@@ -1,9 +1,11 @@
 <?php
 
+namespace richardevcom\wppb\admin\widgets;
+
 /**
  * WPPB Widget
  */
-class WPPB_Widget extends WP_Widget {
+class WPPB_Widget extends \WP_Widget {
 
 	/**
 	 * Initialize the class and set its properties.
@@ -12,18 +14,27 @@ class WPPB_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'wppb_widget', // Base ID
-			esc_html__('WPPB Widget', 'wppb'), // Name
-			array('description' => esc_html__('WordPress Plugin Boilerplate Widget', 'wppb'),) // Args
+			'wppb_widget',
+			esc_html__('WPPB Widget', 'wppb'),
+			array('description' => esc_html__('WordPress Plugin Boilerplate Widget', 'wppb'),)
 		);
 	}
 
+	/**
+	 * Widget output (public)
+	 * 
+	 * @since	1.0.0
+	 * @param	array	$args	Array of widget arguments
+	 * @param	array	$instance	Widget instance (previously saved data)
+	 */
 	public function widget($args, $instance) {
 		echo $args['before_widget'];
+
 		if (!empty($instance['title'])) {
-			echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
+			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 		}
-		_e(sprintf("Great! It works. Now try customizing your own widget in <code>%s</code>", "admin/widgets/" . basename(__FILE__)), 'wppb');
+		echo sprintf(__("Great! It works. Now try customizing your own widget in <code>%s</code>", 'wppb'), "admin/widgets/" . basename(__FILE__));
+
 		echo $args['after_widget'];
 	}
 
@@ -36,12 +47,7 @@ class WPPB_Widget extends WP_Widget {
 	 */
 	public function form($instance) {
 		$title = !empty($instance['title']) ? $instance['title'] : esc_html__('WPPB Widget Title', 'wppb');
-?>
-		<p>
-			<label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:', 'wppb'); ?></label>
-			<input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>">
-		</p>
-<?php
+		require_once WPPB_ADMIN_PATH . 'templates/widgets/wppb-widget.php';
 	}
 
 	/**

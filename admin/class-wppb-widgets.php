@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\admin;
+
 /**
  * Widgets functionality of the plugin.
  *
@@ -17,7 +19,7 @@
  * @subpackage wppb/admin/Widgets
  * @author     richardev <richardev@localhost>
  */
-class WPPB_Widgets extends WP_Widget {
+class WPPB_Widgets extends \WP_Widget {
 
 	/**
 	 * Initialize the class and set its properties.
@@ -29,8 +31,10 @@ class WPPB_Widgets extends WP_Widget {
 	}
 
 	public function register_widgets() {
+		/**
+		 * Register Widget widget
+		 */
 		require_once WPPB_ADMIN_PATH . 'widgets/class-wppb-widget.php';
-
-		register_widget('WPPB_Widget');
+		register_widget(widgets\WPPB_Widget::class);
 	}
 }

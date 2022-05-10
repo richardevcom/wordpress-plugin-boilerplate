@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\pub\pub;
+
 /**
  * Provide a public-facing view for the plugin
  *

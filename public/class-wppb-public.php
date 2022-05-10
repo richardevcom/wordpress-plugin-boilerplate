@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -42,16 +44,15 @@ class WPPB_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WPPB_Loader as all of the hooks are defined
+		 * defined in WPPB_Hooks as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WPPB_Loader will then create the relationship
+		 * The WPPB_Hooks will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( WPPB_PREFIX, WPPB_PUBLIC_URL . 'css/wppb-public.css', array(), WPPB_VERSION, 'all' );
-
+		wp_enqueue_style(WPPB_PREFIX, WPPB_PUBLIC_URL . 'assets/css/wppb-public.css', array(), WPPB_VERSION, 'all');
 	}
 
 	/**
@@ -65,16 +66,14 @@ class WPPB_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WPPB_Loader as all of the hooks are defined
+		 * defined in WPPB_Hooks as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WPPB_Loader will then create the relationship
+		 * The WPPB_Hooks will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( WPPB_PREFIX, WPPB_PUBLIC_URL . 'js/wppb-public.js', array( 'jquery' ), WPPB_VERSION, false );
-
+		wp_enqueue_script(WPPB_PREFIX, WPPB_PUBLIC_URL . 'assets/js/wppb-public.js', array('jquery'), WPPB_VERSION, false);
 	}
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace richardevcom\wppb\setup;
+
 /**
  * Fired during plugin deactivation
  *
@@ -30,7 +32,5 @@ class WPPB_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
 	}
-
 }

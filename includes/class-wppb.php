@@ -1,10 +1,9 @@
 <?php
 
+namespace richardevcom\wppb;
+
 /**
- * The file that defines the core plugin class
- *
- * A class definition that src attributes and functions used across both the
- * public-facing side of the site and the admin area.
+ * Main plugin class flie
  *
  * @link       richardev.com
  * @since      1.0.0
@@ -14,13 +13,10 @@
  */
 
 /**
- * The core plugin class.
+ * Main plugin class
  *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this plugin as well as the current
- * version of the plugin.
+ * Used to setup dependencies, admin and public side
+ * of the plugin.
  *
  * @since      1.0.0
  * @package    wppb
@@ -30,27 +26,22 @@
 class WPPB {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
+	 * Variable that manages all the plugin hooks.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      WPPB_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      WPPB_Hooks    $hooks    Manages all hooks for the plugin.
 	 */
-	protected $loader;
+	protected $hooks;
 
 	/**
-	 * Define the core functionality of the plugin.
-	 *
-	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
+	 * Set up main plugin functionality 
 	 * 
 	 * @param    string               $file             Plugin index filename.
 	 * @since    1.0.0
 	 */
-	public function __construct($file) {
-		$this->register_setup_hooks($file);
+	public function __construct() {
+		$this->register_setup_hooks(WPPB_PATH . 'wppb.php');
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
@@ -60,54 +51,51 @@ class WPPB {
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - WPPB_Loader. Orchestrates the hooks of the plugin.
-	 * - WPPB_I18n. Defines internationalization functionality.
-	 * - WPPB_Admin. Defines all hooks for the admin area.
-	 * - WPPB_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function load_dependencies() {
 
 		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
+		 * Hooks class file
+		 * 
+		 * @author @DevinVinson
+		 * @source https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/blob/master/plugin-name/includes/class-plugin-name-loader.php
 		 */
-		require_once WPPB_INCLUDES_PATH . 'class-wppb-loader.php';
+		require_once WPPB_INCLUDES_PATH . 'class-wppb-hooks.php';
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
+		 * Internationalization class file
 		 */
 		require_once WPPB_INCLUDES_PATH . 'class-wppb-i18n.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
+		 * Admin class file
+		 * 
+		 * All of the admin side functionality happens there.
 		 */
 		require_once WPPB_ADMIN_PATH . 'class-wppb-admin.php';
+
+		/**
+		 * Admin dashboard class
+		 */
 		require_once WPPB_ADMIN_PATH . 'class-wppb-dashboard.php';
+
+		/**
+		 * Admin widgets class
+		 */
 		require_once WPPB_ADMIN_PATH . 'class-wppb-widgets.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
+		 * Public class file
 		 */
 		require_once WPPB_PUBLIC_PATH . 'class-wppb-public.php';
 
-		$this->loader = new WPPB_Loader();
+		$this->hooks = new WPPB_Hooks();
 	}
 
 	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the WPPB_I18n class in order to set the domain and to register the hook
-	 * with WordPress.
+	 * Setup plugin domain/locale
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -116,82 +104,80 @@ class WPPB {
 
 		$plugin_i18n = new WPPB_I18n();
 
-		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
+		// Register plugin domain
+		$this->hooks->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
+	 * Register admin hooks
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
 		$wppb_admin = new WPPB_Admin();
+		// CSS
+		$this->hooks->add_action('admin_enqueue_scripts', $wppb_admin, 'enqueue_styles');
+		// JS
+		$this->hooks->add_action('admin_enqueue_scripts', $wppb_admin, 'enqueue_scripts');
+		// Action links in plugins.php page
+		$this->hooks->add_filter('plugin_action_links_' . plugin_basename(WPPB_PATH . 'wppb.php'), $wppb_admin, 'add_action_links',);
+		// Admin menu page
+		$this->hooks->add_action('admin_menu', $wppb_admin, 'add_menu_page');
 
-		$this->loader->add_filter('plugin_action_links_' . plugin_basename(WPPB_PATH . 'wppb.php'), $wppb_admin, 'add_action_links',);
-		$this->loader->add_action('admin_menu', $wppb_admin, 'add_menu_page');
-		$this->loader->add_action('admin_enqueue_scripts', $wppb_admin, 'enqueue_styles');
-		$this->loader->add_action('admin_enqueue_scripts', $wppb_admin, 'enqueue_scripts');
+		$wppb_dashboard = new admin\WPPB_Dashboard();
+		if ($wppb_admin->pagenow() === 'index.php') {
+			// CSS
+			$this->hooks->add_action('admin_enqueue_scripts', $wppb_dashboard, 'enqueue_styles');
+			// JS
+			$this->hooks->add_action('admin_enqueue_scripts', $wppb_dashboard, 'enqueue_scripts');
+		}
 
-		$wppb_dashboard = new WPPB_Dashboard();
-		$this->loader->add_action('admin_enqueue_scripts', $wppb_dashboard, 'enqueue_styles');
-		$this->loader->add_action('admin_enqueue_scripts', $wppb_dashboard, 'enqueue_scripts');
-		$this->loader->add_action('wp_dashboard_setup', $wppb_dashboard, 'dashboard_widget');
+		// Load dashboard widget
+		$this->hooks->add_action('wp_dashboard_setup', $wppb_dashboard, 'dashboard_widget');
 
-		$wppb_widgets = new WPPB_Widgets();
-		$this->loader->add_action('widgets_init', $wppb_widgets, 'register_widgets');
+		$wppb_widgets = new admin\WPPB_Widgets();
+		// Load widgets
+		$this->hooks->add_action('widgets_init', $wppb_widgets, 'register_widgets');
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
+	 * Register public hooks
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
 		$wppb_public = new WPPB_Public();
-
-		$this->loader->add_action('wp_enqueue_scripts', $wppb_public, 'enqueue_styles');
-		$this->loader->add_action('wp_enqueue_scripts', $wppb_public, 'enqueue_scripts');
+		// CSS
+		$this->hooks->add_action('wp_enqueue_scripts', $wppb_public, 'enqueue_styles');
+		// JS
+		$this->hooks->add_action('wp_enqueue_scripts', $wppb_public, 'enqueue_scripts');
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
+	 * Run plugin dependencies, hooks, etc. here
 	 *
 	 * @since    1.0.0
 	 */
 	public function run() {
-		$this->loader->run();
+		$this->hooks->run();
 	}
 
 	/**
-	 * Register activation & deactivation hooks
+	 * Register activation, deactivation and uninstallation hooks
 	 * 
-	 * @param    string               $file             Plugin index filename.
+	 * @param    string               $index             Plugin index filename.
 	 * @since    1.0.0
 	 */
-	private function register_setup_hooks($file) {
-		register_activation_hook($file, array($this, 'activate_wppb'));
-		register_deactivation_hook($file, array($this, 'deactivate_wppb'));
-		register_uninstall_hook($file, array($this, 'uninstall_wppb'));
+	private function register_setup_hooks($index) {
+		register_activation_hook($index, array($this, 'activate_wppb'));
+		register_deactivation_hook($index, array($this, 'deactivate_wppb'));
+		register_uninstall_hook($index, array($this, 'uninstall_wppb'));
 	}
 
 	/**
-	 * The reference to the class that orchestrates the hooks with the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    WPPB_Loader    Orchestrates the hooks of the plugin.
-	 */
-	public function get_loader() {
-		return $this->loader;
-	}
-
-	/**
-	 * The code that runs during plugin activation.
-	 * This action is documented in includes/setup/class-wppb-activator.php
+	 * Run during plugin activation
 	 */
 	function activate_wppb() {
 		// Check if user has permission
@@ -199,12 +185,11 @@ class WPPB {
 			return;
 
 		require_once WPPB_INCLUDES_PATH . 'setup/class-wppb-activator.php';
-		WPPB_Activator::activate();
+		setup\WPPB_Activator::activate();
 	}
 
 	/**
-	 * The code that runs during plugin deactivation.
-	 * This action is documented in includes/setup/class-wppb-deactivator.php
+	 * Run during plugin deactivation
 	 */
 	function deactivate_wppb() {
 		// Check if user has permission
@@ -212,12 +197,11 @@ class WPPB {
 			return;
 
 		require_once WPPB_INCLUDES_PATH . 'setup/class-wppb-deactivator.php';
-		WPPB_Deactivator::deactivate();
+		setup\WPPB_Deactivator::deactivate();
 	}
 
 	/**
-	 * The code that runs during plugin uninstallation.
-	 * This action is documented in includes/setup/class-wppb-uninstaller.php
+	 * Run during plugin uninstallation
 	 */
 	function uninstall_wppb() {
 		// If uninstall not called from WordPress, then exit.
@@ -230,6 +214,6 @@ class WPPB {
 			return;
 
 		require_once WPPB_INCLUDES_PATH . 'setup/class-wppb-uninstaller.php';
-		WPPB_Deactivator::uninstall();
+		setup\WPPB_Uninstaller::uninstall();
 	}
 }
